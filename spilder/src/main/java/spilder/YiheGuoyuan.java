@@ -8,10 +8,11 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static multithread.ReadUtil.generateMobile;
 
 /**
  * @Auther: Administrator
@@ -21,27 +22,33 @@ import java.util.concurrent.Executors;
 public class YiheGuoyuan {
     public static void main(String[] args) throws IOException, InterruptedException {
         //创建固定大小的线程池
-        ExecutorService exec = Executors.newFixedThreadPool(16);
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\01.txt",new String[]{"139","138"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\02.txt",new String[]{"137","136"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\03.txt",new String[]{"135","134"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\04.txt",new String[]{"159","158"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\05.txt",new String[]{"157","150"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\06.txt",new String[]{"151","152"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\07.txt",new String[]{"147","188"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\08.txt",new String[]{"187","182"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\09.txt",new String[]{"183","184"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\10.txt",new String[]{"178","130"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\11.txt",new String[]{"131","132"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\12.txt",new String[]{"156","155"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\13.txt",new String[]{"186","185"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\14.txt",new String[]{"145","176"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\15.txt",new String[]{"166","133"}));
-        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\16.txt",new String[]{"153","189"}));
+//        ExecutorService exec = Executors.newFixedThreadPool(16);
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\01.txt",new String[]{"139","138"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\02.txt",new String[]{"137","136"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\03.txt",new String[]{"135","134"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\04.txt",new String[]{"159","158"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\05.txt",new String[]{"157","150"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\06.txt",new String[]{"151","152"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\07.txt",new String[]{"147","188"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\08.txt",new String[]{"187","182"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\09.txt",new String[]{"183","184"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\10.txt",new String[]{"178","130"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\11.txt",new String[]{"131","132"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\12.txt",new String[]{"156","155"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\13.txt",new String[]{"186","185"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\14.txt",new String[]{"145","176"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\15.txt",new String[]{"166","133"}));
+//        exec.execute(new ParseThread("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\16.txt",new String[]{"153","189"}));
+//
+//        //线程关闭
+//        exec.shutdown();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\手机号前7位.txt")));
 
-        //线程关闭
-        exec.shutdown();
+//        while (inputStream)
+        generateMobile("1393898","E:\\workspaces\\studyProject\\spilder\\src\\main\\resources\\orders\\");
     }
+
+
 
 }
 
