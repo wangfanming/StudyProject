@@ -12,6 +12,8 @@
         <module>DesignPatterns</module>
         <module>spilder</module>
         <module>sparkStreaming</module>
+        <module>scalaStudy</module>
+        <module>simple-rpc</module>
     </modules>
 
     <properties>
