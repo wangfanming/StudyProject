@@ -1,6 +1,6 @@
-package com.wfm.rpcBasedNetty.client;
+package com.wfm.rpcClientBasedNetty.client;
 
-import com.wfm.rpcBasedNetty.aop.RpcInvokeHook;
+import com.wfm.rpcClientBasedNetty.aop.RpcInvokeHook;
 
 import java.lang.reflect.Proxy;
 

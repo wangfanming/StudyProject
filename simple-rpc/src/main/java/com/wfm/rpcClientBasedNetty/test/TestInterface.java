@@ -1,4 +1,4 @@
-package com.wfm.rpcBasedNetty.test;
+package com.wfm.rpcClientBasedNetty.test;
 
 /**
  * @Auther: wangfanming

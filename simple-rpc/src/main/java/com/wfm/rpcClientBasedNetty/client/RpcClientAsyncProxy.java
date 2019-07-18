@@ -1,6 +1,6 @@
-package com.wfm.rpcBasedNetty.client;
+package com.wfm.rpcClientBasedNetty.client;
 
-import com.wfm.rpcBasedNetty.future.RpcFuture;
+import com.wfm.rpcClientBasedNetty.future.RpcFuture;
 
 /**
  * @Auther: wangfanming
