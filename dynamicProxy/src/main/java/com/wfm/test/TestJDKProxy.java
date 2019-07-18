@@ -19,6 +19,8 @@ public class TestJDKProxy {
 
         People stdent = (People) Proxy.newProxyInstance(people.getClass().getClassLoader(), people.getClass().getInterfaces(), workHadler);
 
+        //在Student被加强以后，实际上，student所有的方法调用，其实都是在通过其被加强后的方法调用了invoke()方法
+
         System.out.println(stdent.work());;
 
     }
