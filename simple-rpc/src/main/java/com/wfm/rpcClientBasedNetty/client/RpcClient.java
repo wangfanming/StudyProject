@@ -84,6 +84,7 @@ public class RpcClient implements InvocationHandler {
         System.out.println("");
 
         RpcFuture rpcFuture = new RpcFuture();
+        //此处示例程序中将TestThread作为服务端调用
         TestThread testThread = new TestThread(rpcFuture, methodName, args);
         testThread.start();
 
@@ -118,7 +119,7 @@ public class RpcClient implements InvocationHandler {
                     method = testInterface.getClass().getMethod(methodName);
                 }
 
-                //调用 invoke()方法，完成逻辑
+                //调用 invoke()方法，完成逻辑 ,此时 rpcFuture的计数器会执行countDown()
                 rpcFuture.setResult(method.invoke(testInterface,args));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
