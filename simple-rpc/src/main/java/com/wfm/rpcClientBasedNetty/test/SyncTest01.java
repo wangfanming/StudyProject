@@ -1,7 +1,7 @@
-package com.wfm.rpcBasedNetty.test;
+package com.wfm.rpcClientBasedNetty.test;
 
-import com.wfm.rpcBasedNetty.aop.RpcInvokeHook;
-import com.wfm.rpcBasedNetty.client.RpcClientProxyBuilder;
+import com.wfm.rpcClientBasedNetty.aop.RpcInvokeHook;
+import com.wfm.rpcClientBasedNetty.client.RpcClientProxyBuilder;
 
 /**
  * @Auther: wangfanming

@@ -1,4 +1,4 @@
-package com.wfm.rpcBasedNetty.aop;
+package com.wfm.rpcClientBasedNetty.aop;
 
 /**
  * @Auther: wangfanming

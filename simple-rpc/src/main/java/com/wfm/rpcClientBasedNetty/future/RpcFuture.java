@@ -1,4 +1,4 @@
-package com.wfm.rpcBasedNetty.future;
+package com.wfm.rpcClientBasedNetty.future;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

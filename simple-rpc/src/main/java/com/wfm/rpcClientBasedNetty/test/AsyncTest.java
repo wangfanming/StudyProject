@@ -1,10 +1,10 @@
-package com.wfm.rpcBasedNetty.test;
+package com.wfm.rpcClientBasedNetty.test;
 
-import com.wfm.rpcBasedNetty.aop.RpcInvokeHook;
-import com.wfm.rpcBasedNetty.client.RpcClientAsyncProxy;
-import com.wfm.rpcBasedNetty.client.RpcClientProxyBuilder;
-import com.wfm.rpcBasedNetty.future.RpcFuture;
-import com.wfm.rpcBasedNetty.future.RpcFutureListener;
+import com.wfm.rpcClientBasedNetty.aop.RpcInvokeHook;
+import com.wfm.rpcClientBasedNetty.client.RpcClientAsyncProxy;
+import com.wfm.rpcClientBasedNetty.client.RpcClientProxyBuilder;
+import com.wfm.rpcClientBasedNetty.future.RpcFuture;
+import com.wfm.rpcClientBasedNetty.future.RpcFutureListener;
 
 /**
  * @Auther: wangfanming

@@ -1,4 +1,4 @@
-package com.wfm.rpcBasedNetty.future;
+package com.wfm.rpcClientBasedNetty.future;
 
 /**
  * @Auther: wangfanming
