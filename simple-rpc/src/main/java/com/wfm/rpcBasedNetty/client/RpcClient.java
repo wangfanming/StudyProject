@@ -32,24 +32,14 @@ public class RpcClient implements InvocationHandler {
         this.port = port;
     }
 
-    public RpcFuture call(String methodName,Object ... args){
-        if(rpcInvokerHook != null){
-            rpcInvokerHook.beforeInvoke(methodName,args);
-        }
-        System.out.print("invoke method = " + methodName + " args =");
-
-        for(Object argsObject : args){
-            System.out.print(" " + argsObject.toString());
-        }
-        System.out.println("");
-
-        RpcFuture rpcFuture = new RpcFuture();
-        TestThread testThread = new TestThread(rpcFuture, methodName, args);
-        testThread.start();
-
-        return rpcFuture;
-    }
-
+    /**
+     *
+     * 功能描述: 被代理对象在调用自身方法时，实际上是在调用本方法进行“增强”。
+     * @param:
+     * @return:
+     * @auther: wangfanming
+     * @date: 2019/7/18 15:07
+     */
     public Object invoke(Object proxy,Method method,Object[] args) throws Throwable {
         RpcFuture rpcFuture = call(method.getName(), args);
         Object result;
@@ -80,6 +70,24 @@ public class RpcClient implements InvocationHandler {
               return string.toUpperCase();
           }
         };
+    }
+
+    public RpcFuture call(String methodName,Object ... args){
+        if(rpcInvokerHook != null){
+            rpcInvokerHook.beforeInvoke(methodName,args);
+        }
+        System.out.print("invoke method = " + methodName + " args =");
+
+        for(Object argsObject : args){
+            System.out.print(" " + argsObject.toString());
+        }
+        System.out.println("");
+
+        RpcFuture rpcFuture = new RpcFuture();
+        TestThread testThread = new TestThread(rpcFuture, methodName, args);
+        testThread.start();
+
+        return rpcFuture;
     }
 
     class TestThread extends Thread{

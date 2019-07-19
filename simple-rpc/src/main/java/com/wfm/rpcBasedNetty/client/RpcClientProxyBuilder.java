@@ -66,7 +66,7 @@ public class RpcClientProxyBuilder {
 
         /**
          *
-         * 功能描述: 构建同步代理。以同步方式，线程将被阻塞，直到*获得结果或超时。
+         * 功能描述: 构建同步代理。以同步方式，线程将被阻塞，直到获得结果或超时。
          * @param:
          * @return:
          * @auther: wangfanming
