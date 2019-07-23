@@ -1,7 +1,7 @@
-package com.wfm.rpcServerBasedNetty.server;
+package com.wfm.netFramework.server;
 
 import com.wfm.rpcClientBasedNetty.aop.RpcInvokeHook;
-import com.wfm.rpcServerBasedNetty.context.RpcRequest;
+import com.wfm.rpcServerBasedNetty.context.RpcRequestWrapper;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -16,7 +16,7 @@ public class RpcServerRequestHandler
 
     private int threads;
     private ExecutorService threadPool;
-    private BlockingQueue<RpcRequest> requestQueue = new LinkedBlockingQueue<RpcRequest>();
+    private BlockingQueue<RpcRequestWrapper> requestQueue = new LinkedBlockingQueue<RpcRequestWrapper>();
 
     public RpcServerRequestHandler(Class<?> interfaceClass,	Object serviceProvider, int threads,
                                    RpcInvokeHook rpcInvokeHook)
@@ -30,18 +30,30 @@ public class RpcServerRequestHandler
     public void start()
     {
         threadPool = Executors.newFixedThreadPool(threads);
-        for(int i=0; i<threads; i++)
+        for(int i=0; i < threads; i++)
         {
             threadPool.execute(new RpcServerRequestHandleRunnable(interfaceClass,
-                    serviceProvider, rpcInvokeHook, requestQueue));
+                serviceProvider, rpcInvokeHook, requestQueue));
         }
     }
 
-    public void addRequest(RpcRequest rpcRequest)
+//    public void addRequest(RpcRequest rpcRequest)
+//    {
+//        try
+//        {
+//            requestQueue.put(rpcRequest);
+//        }
+//        catch (InterruptedException e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public void addRequest(RpcRequestWrapper rpcRequestWrapper)
     {
         try
         {
-            requestQueue.put(rpcRequest);
+            requestQueue.put(rpcRequestWrapper);
         }
         catch (InterruptedException e)
         {
