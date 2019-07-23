@@ -6,5 +6,6 @@ package com.wfm.rpcClientBasedNetty.test;
  * @Description:
  */
 public interface TestInterface {
-    public String testMethod01(String s);
+//    public String testMethod01(String s);
+    public String testMethod02();
 }

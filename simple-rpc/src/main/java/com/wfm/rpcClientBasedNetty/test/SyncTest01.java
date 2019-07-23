@@ -26,6 +26,6 @@ public class SyncTest01 {
                 .connect("127.0.0.1", 3721)
                 .build();
 
-        System.out.println("invoke result = " + testInterface.testMethod01("qwerty"));
+//        System.out.println("invoke result = " + testInterface.testMethod01("qwerty"));
     }
 }

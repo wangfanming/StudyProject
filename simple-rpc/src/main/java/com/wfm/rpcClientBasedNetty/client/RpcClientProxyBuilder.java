@@ -18,6 +18,8 @@ public class RpcClientProxyBuilder {
         private RpcInvokeHook rpcInvokeHook = null;
         private String host;
         private int port;
+        private int threads;
+
 
         private ProxyBuilder(Class<T> clazz){
             this.clazz = clazz;
@@ -51,6 +53,20 @@ public class RpcClientProxyBuilder {
 
         /**
          *
+         * 功能描述: 设置线程个数
+         * @param:
+         * @return:
+         * @auther: wangfanming
+         * @date: 2019/7/23 16:07
+         */
+        public ProxyBuilder<T> threads(int threadCount)
+        {
+            this.threads = threadCount;
+            return this;
+        }
+
+        /**
+         *
          * 功能描述: 设置连接信息
          * @param:
          * @return:
@@ -73,10 +89,20 @@ public class RpcClientProxyBuilder {
          * @date: 2019/7/17 10:43
          */
         public T build(){
+            if(threads <= 0)
+                threads = Runtime.getRuntime().availableProcessors();
+
             rpcClient = new RpcClient(timeoutMills,rpcInvokeHook,host,port);
             rpcClient.connect();
 
-            return (T) Proxy.newProxyInstance(clazz.getClassLoader(),new Class<?>[]{clazz},rpcClient);
+            T res = null;
+             try {
+                res = (T) Proxy.newProxyInstance(clazz.getClassLoader(),new Class<?>[]{clazz},rpcClient);
+             }catch (Exception e){
+                 e.printStackTrace();
+             }
+
+             return res;
         }
 
         /**
@@ -88,6 +114,9 @@ public class RpcClientProxyBuilder {
          * @date: 2019/7/17 10:45
          */
         public RpcClientAsyncProxy buildAsyncProxy(){
+            if(threads <= 0)
+                threads = Runtime.getRuntime().availableProcessors();
+
             rpcClient = new RpcClient(timeoutMills,rpcInvokeHook,host,port);
             rpcClient.connect();
 

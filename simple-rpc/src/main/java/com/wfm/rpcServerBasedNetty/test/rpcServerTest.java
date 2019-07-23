@@ -7,8 +7,13 @@ import com.wfm.rpcServerBasedNetty.server.RpcServerBuilder;
 
 public class rpcServerTest {
     public static void main(String[] args) {
-        TestInterface testInterface = new TestInterface()
-        {
+
+//        (String string) -> { return string.toUpperCase(); };
+        TestInterface testInterface = new TestInterface() {
+            @Override
+            public String testMethod02() {
+                return "return from server";
+            }
             public String testMethod01(String string)
             {
                 return string.toUpperCase();
@@ -35,6 +40,7 @@ public class rpcServerTest {
                 .hook(hook)
                 .bind(3721)
                 .build();
+
         rpcServer.start();
     }
 }

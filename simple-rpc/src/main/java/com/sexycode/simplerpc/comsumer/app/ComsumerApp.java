@@ -16,7 +16,7 @@ public class ComsumerApp {
 
     public static void main(String[] args) {
         Calculator calculator = new CalculatorRemoteImpl();
-        int result = calculator.add(1, 2);
+        int result = calculator.add(1, 5);
         log.info("result is {}", result);
     }
 }
