@@ -7,7 +7,7 @@ import java.lang.reflect.Proxy;
 /**
  * @Auther: wangfanming
  * @Date: 2019/7/17 10:28
- * @Description:
+ * @Description: RpcClentProxyBuilder 是用于产生代理对象的工厂，可以产生同步或异步的代理对象
  */
 public class RpcClientProxyBuilder {
     public static class ProxyBuilder<T>{
@@ -82,7 +82,7 @@ public class RpcClientProxyBuilder {
 
         /**
          *
-         * 功能描述: 构建同步代理。以同步方式，线程将被阻塞，直到获得结果或超时。
+         * 功能描述: 用于创建同步方法下的代理对象
          * @param:
          * @return:
          * @auther: wangfanming
@@ -107,7 +107,7 @@ public class RpcClientProxyBuilder {
 
         /**
          *
-         * 功能描述: 构建异步代理。以异步方式，一个RpcFuture将立即返回。
+         * 功能描述: 用于创建异步方式下的代理对象。
          * @param:
          * @return:
          * @auther: wangfanming
