@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="algorithm" />
+        <module name="DesignPatterns" />
+        <module name="dynamicProxy" />
+        <module name="Multithreading" />
+        <module name="scalaStudy" />
+        <module name="simple-rpc" />
+        <module name="sparkMLib" />
+        <module name="sparkStreaming" />
+        <module name="spilder" />
+        <module name="zookeeperStudy" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
+  </component>
+</project>
