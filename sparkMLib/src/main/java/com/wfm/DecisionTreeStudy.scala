@@ -31,6 +31,9 @@ object DecisionTreeStudy {
     println ("MAE: " + rm2.meanAbsoluteError)
     println ("RMSE Squared:" + rm2.rootMeanSquaredError)
 
+
+    data.repartition(1).write.orc("")
   }
+
 
 }

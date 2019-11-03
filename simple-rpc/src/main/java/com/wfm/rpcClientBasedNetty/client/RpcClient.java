@@ -7,7 +7,6 @@ import com.wfm.netFramework.netty.NettyKryoDecoder;
 import com.wfm.netFramework.netty.NettyKryoEncoder;
 import com.wfm.rpcClientBasedNetty.aop.RpcInvokeHook;
 import com.wfm.rpcClientBasedNetty.future.RpcFuture;
-import com.wfm.rpcClientBasedNetty.test.TestInterface;
 import com.wfm.rpcServerBasedNetty.context.RpcRequest;
 import com.wfm.utils.InfoPrinter;
 import io.netty.bootstrap.Bootstrap;
@@ -17,7 +16,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -34,6 +32,7 @@ public class RpcClient implements InvocationHandler {
     private RpcInvokeHook rpcInvokerHook = null;
     private String host;
     private int port;
+    private int threads;
     private Bootstrap bootstrap;
 
     private RpcClientResponseHandler rpcClientResponseHandler;
@@ -42,12 +41,29 @@ public class RpcClient implements InvocationHandler {
     private RpcClientChannelInactiveListener rpcClientChannelInactiveListener;
 
 
-    public RpcClient(long timeoutMills, RpcInvokeHook rpcInvokeHook, String host, int port)
+    public RpcClient(long timeoutMills, RpcInvokeHook rpcInvokeHook, String host, int port,int threads)
     {
         this.timeoutMills = timeoutMills;
         this.rpcInvokerHook = rpcInvokeHook;
         this.host = host;
         this.port = port;
+        this.threads = threads;
+
+        rpcClientResponseHandler = new RpcClientResponseHandler(threads);
+        rpcClientChannelInactiveListener = new RpcClientChannelInactiveListener()
+        {
+            public void onInactive()
+            {
+                InfoPrinter.println("connection with server is closed.");
+                InfoPrinter.println("try to reconnect to the server.");
+                channel = null;
+                do
+                {
+                    channel = tryConnect();
+                }
+                while(channel == null);
+            }
+        };
     }
 
     /**

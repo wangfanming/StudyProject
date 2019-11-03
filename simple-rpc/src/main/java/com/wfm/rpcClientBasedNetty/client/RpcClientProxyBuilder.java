@@ -92,7 +92,8 @@ public class RpcClientProxyBuilder {
             if(threads <= 0)
                 threads = Runtime.getRuntime().availableProcessors();
 
-            rpcClient = new RpcClient(timeoutMills,rpcInvokeHook,host,port);
+            rpcClient = new RpcClient(timeoutMills,rpcInvokeHook,host,port,threads);
+            //初始化channel
             rpcClient.connect();
 
             T res = null;
@@ -117,7 +118,7 @@ public class RpcClientProxyBuilder {
             if(threads <= 0)
                 threads = Runtime.getRuntime().availableProcessors();
 
-            rpcClient = new RpcClient(timeoutMills,rpcInvokeHook,host,port);
+            rpcClient = new RpcClient(timeoutMills,rpcInvokeHook,host,port,threads);
             rpcClient.connect();
 
             return new RpcClientAsyncProxy(rpcClient);

@@ -16,6 +16,9 @@
         <module>simple-rpc</module>
         <module>dynamicProxy</module>
         <module>Multithreading</module>
+        <module>sparkMLib</module>
+        <module>zookeeperStudy</module>
+        <module>algorithm</module>
     </modules>
 
     <properties>
@@ -24,6 +27,7 @@
         <logback.version>1.1.7</logback.version>
         <logback-classic-version>1.0.13</logback-classic-version>
     </properties>
+
 
     <dependencies>
         <dependency>
