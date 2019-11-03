@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>emr</artifactId>
+        <groupId>com.dsdatas</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>RecommendSys</artifactId>
+
+<dependencies>
+    <dependency>
+        <groupId>org.jblas</groupId>
+        <artifactId>jblas</artifactId>
+        <version>1.2.4</version>
+    </dependency>
+    <!--<dependency>-->
+        <!--<groupId>org.mongodb.spark</groupId>-->
+        <!--<artifactId>mongo-spark-connector_2.11</artifactId>-->
+        <!--<version>2.3.1</version>-->
+    <!--</dependency>-->
+    <!-- https://mvnrepository.com/artifact/org.mongodb/casbah -->
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>casbah_2.11</artifactId>
+        <version>3.0.0</version>
+        <type>pom</type>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-streaming_2.11</artifactId>
+        <version>2.3.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+        <version>2.3.2</version>
+    </dependency>
+    <dependency>
+        <groupId>net.jpountz.lz4</groupId>
+        <artifactId>lz4</artifactId>
+        <version>1.3.0</version>
+    </dependency>
+</dependencies>
+</project>

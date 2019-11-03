@@ -19,6 +19,7 @@
         <module>sparkMLib</module>
         <module>zookeeperStudy</module>
         <module>algorithm</module>
+        <module>RecommendSys</module>
     </modules>
 
     <properties>
