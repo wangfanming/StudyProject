@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 public class SimpleZKClient {
-    private static final String connectString = "10.10.3.210:2181";
+    private static final String connectString = "cluster:2181";
     private static final int sessionTimeout = 2000;
 
     ZooKeeper zkClient = null;
@@ -47,14 +47,14 @@ public class SimpleZKClient {
     //在zk中创建数据节点
     @Test
     public void testCreate() throws KeeperException, InterruptedException {
-        String nodeCreated  = zkClient.create("/test", "hello Zookeeper".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        String nodeCreated  = zkClient.create("/locks", null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
         //上传数据可以是任何类型，但都必须转成byte[]
     }
 
     //判断znode是否存在
     @Test
     public void testExist() throws KeeperException, InterruptedException {
-        Stat stat = zkClient.exists("/test", false);
+        Stat stat = zkClient.exists("/locks/sub", false);
 
         System.out.println(stat==null ? "not exist !" : "exist !");
     }
@@ -62,11 +62,11 @@ public class SimpleZKClient {
     //获取子节点
     @Test
     public void getChildren() throws KeeperException, InterruptedException {
-        List<String> children = zkClient.getChildren("/", true);
+        List<String> children = zkClient.getChildren("/locks", true);
         for (String child : children){
             System.out.println(child);
         }
-        Thread.sleep(Long.MAX_VALUE);
+//        Thread.sleep(Long.MAX_VALUE);
     }
 
     //获取znode的数据
@@ -80,9 +80,10 @@ public class SimpleZKClient {
     @Test
     public void deleteZnode() throws KeeperException, InterruptedException {
         //参数二：指定要删除的版本，-1表示所有版本
-        zkClient.delete("/test",-1);
+        zkClient.delete("/locks",-1);
     }
 
+    //修改znode节点的数据
     @Test
     public void setData() throws Exception {
 
