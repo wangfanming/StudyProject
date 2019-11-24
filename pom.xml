@@ -18,8 +18,9 @@
         <module>Multithreading</module>
         <module>sparkMLib</module>
         <module>zookeeperStudy</module>
-        <module>algorithm</module>
+        <!--<module>algorithm</module>-->
         <module>RecommendSys</module>
+        <module>testProject</module>
     </modules>
 
     <properties>
