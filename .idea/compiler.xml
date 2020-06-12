@@ -2,22 +2,61 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="algorithm" />
-        <module name="DesignPatterns" />
-        <module name="dynamicProxy" />
-        <module name="Multithreading" />
-        <module name="scalaStudy" />
-        <module name="simple-rpc" />
+        <module name="spilder" />
+        <module name="yarnStudy" />
+        <module name="RecommendSys" />
+        <module name="rpcclient" />
+        <module name="zookeeperStudy" />
+        <module name="rpcregistry" />
+        <module name="rpcsampleserver" />
+        <module name="rpcsampleinterface" />
         <module name="sparkMLib" />
         <module name="sparkStreaming" />
-        <module name="spilder" />
-        <module name="zookeeperStudy" />
+        <module name="Multithreading" />
+        <module name="rpcserver" />
+        <module name="simple-rpc" />
+        <module name="scalaStudy" />
+        <module name="hiveHookTest" />
+        <module name="dynamicProxy" />
+        <module name="rpccommon" />
+        <module name="DesignPatterns" />
+        <module name="rpcsampleclient" />
+        <module name="testProject" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel>
+      <module name="antlr4" target="1.5" />
+      <module name="archetypeStudy" target="1.5" />
+      <module name="CustomizeRPCFramework" target="1.5" />
+      <module name="DesignPatterns" target="6" />
+      <module name="dynamicProxy" target="1.5" />
+      <module name="flinkArchetypeTest" target="1.8" />
+      <module name="flinkQuickStart" target="1.8" />
+      <module name="flinkStudy" target="1.8" />
+      <module name="hiveHookTest" target="1.5" />
+      <module name="Multithreading" target="1.5" />
+      <module name="RecommendSys" target="1.5" />
+      <module name="rpcclient" target="1.5" />
+      <module name="rpccommon" target="1.5" />
+      <module name="rpcregistry" target="1.5" />
+      <module name="rpcsampleclient" target="1.5" />
+      <module name="rpcsampleinterface" target="1.5" />
+      <module name="rpcsampleserver" target="1.5" />
+      <module name="rpcserver" target="1.5" />
+      <module name="scalaStudy" target="8" />
+      <module name="simple-rpc" target="8" />
+      <module name="sparkMLib" target="1.5" />
+      <module name="sparkStreaming" target="1.8" />
+      <module name="spilder" target="8" />
+      <module name="studyProject" target="1.5" />
+      <module name="testProject" target="8" />
+      <module name="yarnStudy" target="1.5" />
+      <module name="zookeeperStudy" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

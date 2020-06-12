@@ -7,44 +7,37 @@ package com.wfm.rpc.test;
  * @Description: TODO
  * @Version 1.0
  */
-public class JUnitTestCustomObject
-{
+public class JUnitTestCustomObject {
     private String string;
     private int i;
 
-    public JUnitTestCustomObject(String string, int i)
-    {
+    public JUnitTestCustomObject(String string, int i) {
         super();
         this.string = string;
         this.i = i;
     }
 
-    public String getString()
-    {
+    public String getString() {
         return string;
     }
 
-    public void setString(String string)
-    {
+    public void setString(String string) {
         this.string = string;
     }
 
-    public int getI()
-    {
+    public int getI() {
         return i;
     }
 
-    public void setI(int i)
-    {
+    public void setI(int i) {
         this.i = i;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         JUnitTestCustomObject object = null;
-        if(obj instanceof JUnitTestCustomObject)
-            object = (JUnitTestCustomObject)obj;
+        if (obj instanceof JUnitTestCustomObject)
+            object = (JUnitTestCustomObject) obj;
         else
             return false;
 

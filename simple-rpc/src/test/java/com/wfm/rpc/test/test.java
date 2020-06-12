@@ -13,6 +13,7 @@ public class test {
         System.out.println(i);
         return (val & -val) == val;
     }
+
     public static void main(String[] args) {
         System.out.println(isPowerOfTwo(4));
     }

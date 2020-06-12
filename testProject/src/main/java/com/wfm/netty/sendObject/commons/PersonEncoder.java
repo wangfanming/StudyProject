@@ -9,6 +9,7 @@ public class PersonEncoder extends MessageToByteEncoder<Person> { // ChannelOutb
 
     /**
      * 对消息对象进行编码
+     *
      * @param ctx
      * @param msg
      * @param out

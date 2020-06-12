@@ -15,8 +15,7 @@ import io.netty.channel.Channel;
 import java.util.concurrent.BlockingQueue;
 
 
-public class RpcServerRequestHandleRunnable implements Runnable
-{
+public class RpcServerRequestHandleRunnable implements Runnable {
     private Class<?> interfaceClass;
     private Object serviceProvider;
     private RpcInvokeHook rpcInvokeHook;
@@ -29,8 +28,7 @@ public class RpcServerRequestHandleRunnable implements Runnable
 
     public RpcServerRequestHandleRunnable(Class<?> interfaceClass,
                                           Object serviceProvider, RpcInvokeHook rpcInvokeHook,
-                                          BlockingQueue<RpcRequestWrapper> requestQueue)
-    {
+                                          BlockingQueue<RpcRequestWrapper> requestQueue) {
         this.interfaceClass = interfaceClass;
         this.serviceProvider = serviceProvider;
         this.rpcInvokeHook = rpcInvokeHook;
@@ -39,23 +37,19 @@ public class RpcServerRequestHandleRunnable implements Runnable
         methodAccess = MethodAccess.get(interfaceClass);
     }
 
-    public void run()
-    {
-        while(true)
-        {
-            try
-            {
+    public void run() {
+        while (true) {
+            try {
                 rpcRequestWrapper = requestQueue.take();
 
                 String methodName = rpcRequestWrapper.getMethodName();
                 Object[] args = rpcRequestWrapper.getArgs();
 
-                if(rpcInvokeHook != null)
+                if (rpcInvokeHook != null)
                     rpcInvokeHook.beforeInvoke(methodName, args);
 
                 Object result = null;
-                if(!methodName.equals(lastMethodName))
-                {
+                if (!methodName.equals(lastMethodName)) {
                     lastMethodIndex = methodAccess.getIndex(methodName);
                     lastMethodName = methodName;
                 }
@@ -69,11 +63,9 @@ public class RpcServerRequestHandleRunnable implements Runnable
                 rpcResponse.setInvokeSuccess(true);
                 channel.writeAndFlush(rpcResponse);
 
-                if(rpcInvokeHook != null)
+                if (rpcInvokeHook != null)
                     rpcInvokeHook.afterInvoke(methodName, args);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Channel channel = rpcRequestWrapper.getChannel();
                 RpcResponse rpcResponse = new RpcResponse();
                 rpcResponse.setId(rpcRequestWrapper.getId());

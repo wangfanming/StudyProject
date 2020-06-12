@@ -34,7 +34,7 @@ public class DistributedClientLock {
             public void process(WatchedEvent event) {
                 try {
                     //判断事件类型，此处只处理子节点变化事件
-                    if(event.getType() == Event.EventType.NodeChildrenChanged && event.getPath().equals("/" + groupNode)){
+                    if (event.getType() == Event.EventType.NodeChildrenChanged && event.getPath().equals("/" + groupNode)) {
                         System.out.println("1 执行了。。。。。。");
                         //获取子节点，并对父节点进行监听
                         List<String> childrenNodes = zk.getChildren("/" + groupNode, true);
@@ -42,12 +42,12 @@ public class DistributedClientLock {
 
                         //去比较自己的 id 是否最小
                         Collections.sort(childrenNodes);
-                        if(childrenNodes.indexOf(thisNode) == 0){
+                        if (childrenNodes.indexOf(thisNode) == 0) {
                             //访问共享资源处理业务，并且在完成处理之后删除锁
                             doSomething();
 
                             //重新注册一把新锁
-                            zk.create("/" + groupNode + "/" + subNode,null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+                            zk.create("/" + groupNode + "/" + subNode, null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
                         }
                     }
                 } catch (Exception e) {
@@ -57,7 +57,7 @@ public class DistributedClientLock {
         });
 
         // 1、程序一进来就先注册一把锁到zk
-        thisPath = zk.create("/" + groupNode + "/" + subNode,null, ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL_SEQUENTIAL);
+        thisPath = zk.create("/" + groupNode + "/" + subNode, null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 
         // wait一小会，便于观察
         Thread.sleep(new Random().nextInt(1000));
@@ -66,21 +66,21 @@ public class DistributedClientLock {
         List<String> childrenNodes = zk.getChildren("/" + groupNode, true);
 
         //如果挣钱资源的程序就只有自己，就可以直接去访问共享资源
-        if(childrenNodes.size() == 1){
+        if (childrenNodes.size() == 1) {
             doSomething();
 
-            thisPath = zk.create("/" + groupNode + "/" + subNode,null, ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL_SEQUENTIAL);
+            thisPath = zk.create("/" + groupNode + "/" + subNode, null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
         }
 
     }
 
-   /**
-    * @Author wangfanming
-    * @Param []
-    * @return void
-    * @Description 处理业务逻辑，并且在最后释放锁
-    * @Date 2019/9/8 23:12
-    **/
+    /**
+     * @return void
+     * @Author wangfanming
+     * @Param []
+     * @Description 处理业务逻辑，并且在最后释放锁
+     * @Date 2019/9/8 23:12
+     **/
     private void doSomething() throws Exception {
         try {
             System.out.println("gain lock: " + thisPath);

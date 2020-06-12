@@ -36,11 +36,11 @@ public class EchoClient {
             //创建EventLoopGroup对象，并设置到Bootstrap中，EventLoopGroup可以理解为一个线程池，用于处理连接、接收数据、发送数据
             nioEventLoopGroup = new NioEventLoopGroup();
 
-            bootstrap.group(nioEventLoopGroup).channel(NioSocketChannel.class).remoteAddress(new InetSocketAddress(host,port))
+            bootstrap.group(nioEventLoopGroup).channel(NioSocketChannel.class).remoteAddress(new InetSocketAddress(host, port))
                     .handler(new ChannelInitializer<SocketChannel>() {
                         //添加一个ChannelHandler,客户端成功连接服务器后就会被执行
                         @Override
-                        protected void initChannel(SocketChannel ch){
+                        protected void initChannel(SocketChannel ch) {
                             ChannelPipeline pipeline = ch.pipeline();
                             pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
                             pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
@@ -57,7 +57,7 @@ public class EchoClient {
 //            ChannelFuture futrue = bootstrap.connect().sync();
 //            //最后关闭EventLoopGroup来释放资源
 //            futrue.channel().closeFuture().sync();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -67,9 +67,9 @@ public class EchoClient {
 
     public void sendMessage(Person person) throws InterruptedException {
         System.out.println("打开管道开始发送消息 ...");
-        if (this.channel != null){
+        if (this.channel != null) {
             this.channel.writeAndFlush(person).sync();
-        }else {
+        } else {
             System.out.println("管道未建立成功，消息发送失败 ...");
         }
     }
@@ -79,7 +79,7 @@ public class EchoClient {
         EchoClient client = new EchoClient("localhost", 20000);
 
 
-        for(int i =0; i<10 ;i++){
+        for (int i = 0; i < 10; i++) {
             Person person = new Person("zhangsan", 21);
             person.setAge(person.getAge() + i);
             client.sendMessage(person);

@@ -28,7 +28,7 @@ public class EchoServer {
             eventLoopGroup = new NioEventLoopGroup();
 
             //指定通道类型为NioServerSocketChannel,设置InetSocketAddress让服务器监听某个端口，等待客户端连接
-            serverBootstrap.group(eventLoopGroup).channel(NioServerSocketChannel.class).localAddress("localhost",port)
+            serverBootstrap.group(eventLoopGroup).channel(NioServerSocketChannel.class).localAddress("localhost", port)
                     .childHandler(new ChannelInitializer<Channel>() {
 
                         //设置childHandler执行所有的连接请求

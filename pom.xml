@@ -18,9 +18,14 @@
         <module>Multithreading</module>
         <module>sparkMLib</module>
         <module>zookeeperStudy</module>
-        <!--<module>algorithm</module>-->
-        <module>RecommendSys</module>
+<!--        <module>algorithm</module>-->
+<!--        <module>RecommendSys</module>-->
         <module>testProject</module>
+        <module>CustomizeRPCFramework</module>
+        <module>hiveHookTest</module>
+                <module>flinkStudy</module>
+<!--        <module>archetypeStudy</module>-->
+<!--        <module>flinkArchetypeTest</module>-->
     </modules>
 
     <properties>

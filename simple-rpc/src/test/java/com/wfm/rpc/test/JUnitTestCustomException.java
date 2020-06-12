@@ -7,12 +7,10 @@ package com.wfm.rpc.test;
  * @Description: TODO
  * @Version 1.0
  */
-public class JUnitTestCustomException extends RuntimeException
-{
+public class JUnitTestCustomException extends RuntimeException {
     private static final long serialVersionUID = 591530421634999576L;
 
-    public JUnitTestCustomException()
-    {
+    public JUnitTestCustomException() {
         super("CustomException");
     }
 }

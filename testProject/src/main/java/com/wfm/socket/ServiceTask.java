@@ -8,7 +8,7 @@ public class ServiceTask implements Runnable {
     InputStream in = null;
     OutputStream out = null;
     Class<?> clazz = null;
-    Object obj  = null;
+    Object obj = null;
 
 
     public ServiceTask(Socket socket) {
@@ -33,17 +33,17 @@ public class ServiceTask implements Runnable {
             try {
                 clazz = Class.forName(className);
                 obj = clazz.newInstance();
-            }catch (Exception e){
+            } catch (Exception e) {
                 pw.println(className + " 类不存在 ！");
                 pw.flush();
             }
 
-            if(TaskImpl.class.isInstance(obj)){
-                if("getData".equals(methodName)){
-                    Object invokeResult = clazz.getMethod(methodName,String.class,String.class).invoke(obj,parameters[0],parameters[1]);
+            if (TaskImpl.class.isInstance(obj)) {
+                if ("getData".equals(methodName)) {
+                    Object invokeResult = clazz.getMethod(methodName, String.class, String.class).invoke(obj, parameters[0], parameters[1]);
                     pw.println(invokeResult);
                     pw.flush();
-                }else {
+                } else {
                     pw.println(methodName + " 方法不存在 ！");
                     pw.flush();
                 }
@@ -52,7 +52,7 @@ public class ServiceTask implements Runnable {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 socket.close();
             } catch (IOException e) {

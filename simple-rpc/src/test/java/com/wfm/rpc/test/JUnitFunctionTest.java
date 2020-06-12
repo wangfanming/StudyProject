@@ -23,8 +23,7 @@ import static org.junit.Assert.*;
  * @Description: TODO
  * @Version 1.0
  */
-public class JUnitFunctionTest
-{
+public class JUnitFunctionTest {
     /**
      * use for sync-mode test
      */
@@ -40,17 +39,13 @@ public class JUnitFunctionTest
     private CountDownLatch countDownLatch;
 
     @BeforeClass
-    public static void init()
-    {
-        RpcInvokeHook hook = new RpcInvokeHook()
-        {
-            public void beforeInvoke(String methodName, Object[] args)
-            {
+    public static void init() {
+        RpcInvokeHook hook = new RpcInvokeHook() {
+            public void beforeInvoke(String methodName, Object[] args) {
                 integerBeforeHook++;
             }
 
-            public void afterInvoke(String methodName, Object[] args)
-            {
+            public void afterInvoke(String methodName, Object[] args) {
                 integerAfterHook++;
             }
         };
@@ -71,22 +66,19 @@ public class JUnitFunctionTest
     }
 
     @Test
-    public void testMethodWithoutArg()
-    {
+    public void testMethodWithoutArg() {
         assertEquals("this is return from methodWithoutArg()",
                 jUnitTestInterface.methodWithoutArg());
     }
 
     @Test
-    public void testMethodWithArgs()
-    {
+    public void testMethodWithArgs() {
         assertEquals("age = 23", jUnitTestInterface.methodWithArgs("age", 23));
         assertEquals("born = 1992", jUnitTestInterface.methodWithArgs("born", 1992));
     }
 
     @Test
-    public void methodWithCustomObject()
-    {
+    public void methodWithCustomObject() {
         JUnitTestCustomObject beforeCustomObject = new JUnitTestCustomObject("before", 3);
         JUnitTestCustomObject afterCustomObject =
                 jUnitTestInterface.methodWithCustomObject(beforeCustomObject);
@@ -95,34 +87,29 @@ public class JUnitFunctionTest
     }
 
     @Test
-    public void testMethodReturnList()
-    {
+    public void testMethodReturnList() {
         List<String> list = jUnitTestInterface.methodReturnList("hello", "world");
         assertEquals("hello", list.get(0));
         assertEquals("world", list.get(1));
     }
 
-    @Test(expected=JUnitTestCustomException.class)
-    public void testMethodThrowException()
-    {
+    @Test(expected = JUnitTestCustomException.class)
+    public void testMethodThrowException() {
         jUnitTestInterface.methodThrowException();
     }
 
-    @Test(expected= RpcTimeoutException.class)
-    public void testMethodTimeOut()
-    {
+    @Test(expected = RpcTimeoutException.class)
+    public void testMethodTimeOut() {
         jUnitTestInterface.methodTimeOut();
     }
 
     @Test
-    public void testMethodReturnVoid()
-    {
+    public void testMethodReturnVoid() {
         jUnitTestInterface.methodReturnVoid();
     }
 
     @Test
-    public void testMethodHook()
-    {
+    public void testMethodHook() {
         integerBeforeHook = 100;
         integerAfterHook = 500;
         jUnitTestInterface.methodWithoutArg();
@@ -131,44 +118,33 @@ public class JUnitFunctionTest
     }
 
     @Test
-    public void testFutureSuccess()
-    {
+    public void testFutureSuccess() {
         RpcFuture rpcFuture = rpcClientAsyncProxy.call("methodDelayOneSecond");
         assertNotNull(rpcFuture);
         assertFalse(rpcFuture.isDone());
 
-        try
-        {
+        try {
             Thread.sleep(2000);
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         assertTrue(rpcFuture.isDone());
-        try
-        {
+        try {
             assertEquals("I have sleep 1000ms already.", rpcFuture.get());
-        }
-        catch (Throwable e)
-        {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void testFutureError()
-    {
+    public void testFutureError() {
         RpcFuture rpcFuture = rpcClientAsyncProxy.call("methodThrowException");
         assertNotNull(rpcFuture);
-        try
-        {
+        try {
             rpcFuture.get();
-        }
-        catch (Throwable e)
-        {
-            if(e instanceof JUnitTestCustomException)
+        } catch (Throwable e) {
+            if (e instanceof JUnitTestCustomException)
                 return;
 
             fail(e + " was caught when testFutureError.");
@@ -178,33 +154,26 @@ public class JUnitFunctionTest
     }
 
     @Test
-    public void testFutureListener()
-    {
+    public void testFutureListener() {
         //1.test for get a result by RpcFutureListener
         countDownLatch = new CountDownLatch(1);
 
         RpcFuture rpcFuture = rpcClientAsyncProxy.call("methodDelayOneSecond");
         assertNotNull(rpcFuture);
-        rpcFuture.setRpcFutureListener(new RpcFutureListener()
-        {
-            public void onResult(Object result)
-            {
+        rpcFuture.setRpcFutureListener(new RpcFutureListener() {
+            public void onResult(Object result) {
                 countDownLatch.countDown();
             }
 
-            public void onException(Throwable throwable)
-            {
+            public void onException(Throwable throwable) {
                 fail(throwable + " was caught when testFutureListener.");
             }
         });
 
-        try
-        {
-            if(!countDownLatch.await(2000, TimeUnit.MILLISECONDS))
+        try {
+            if (!countDownLatch.await(2000, TimeUnit.MILLISECONDS))
                 fail("failed to get result by RpcFutureListener.");
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             fail(e + " was caught when testFutureListener.");
         }
 
@@ -213,36 +182,29 @@ public class JUnitFunctionTest
         countDownLatch = new CountDownLatch(1);
         rpcFuture = rpcClientAsyncProxy.call("methodThrowException");
         assertNotNull(rpcFuture);
-        rpcFuture.setRpcFutureListener(new RpcFutureListener()
-        {
-            public void onResult(Object result)
-            {
+        rpcFuture.setRpcFutureListener(new RpcFutureListener() {
+            public void onResult(Object result) {
                 fail("failed to catch JUnitTestCustomException.");
             }
 
-            public void onException(Throwable throwable)
-            {
-                if(throwable instanceof JUnitTestCustomException)
+            public void onException(Throwable throwable) {
+                if (throwable instanceof JUnitTestCustomException)
                     countDownLatch.countDown();
                 else
                     fail("failed to catch JUnitTestCustomException.");
             }
         });
 
-        try
-        {
-            if(!countDownLatch.await(1000, TimeUnit.MILLISECONDS))
+        try {
+            if (!countDownLatch.await(1000, TimeUnit.MILLISECONDS))
                 fail("failed to get exception by RpcFutureListener.");
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             fail(e + " was caught when testFutureListener.");
         }
     }
 
-    @Test(expected= RpcMethodNotFoundException.class)
-    public void testMethodNotFound()
-    {
+    @Test(expected = RpcMethodNotFoundException.class)
+    public void testMethodNotFound() {
         rpcClientAsyncProxy.call("methodWhichIsNotExist");
     }
 }

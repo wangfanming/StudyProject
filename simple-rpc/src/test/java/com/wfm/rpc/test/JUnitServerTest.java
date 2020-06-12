@@ -11,11 +11,9 @@ import org.junit.Test;
  * @Description: TODO
  * @Version 1.0
  */
-public class JUnitServerTest
-{
+public class JUnitServerTest {
     @Test
-    public void testServerStart()
-    {
+    public void testServerStart() {
         JUnitTestInterfaceImpl jUnitTestInterfaceImpl = new JUnitTestInterfaceImpl();
         RpcServer rpcServer = RpcServerBuilder.create()
                 .serviceInterface(JUnitTestInterface.class)
@@ -26,8 +24,7 @@ public class JUnitServerTest
         rpcServer.start();
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         new JUnitServerTest().testServerStart();
     }
 }

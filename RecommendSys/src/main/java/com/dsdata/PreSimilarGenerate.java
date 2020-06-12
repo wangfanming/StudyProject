@@ -1,8 +1,6 @@
 package com.dsdata;
 
 
-
-
 import java.io.*;
 
 /**
@@ -14,15 +12,15 @@ import java.io.*;
 public class PreSimilarGenerate {
     public static void main(String[] args) throws IOException {
         File file = new File("D:\\share\\临时\\nf_prize_dataset.tar\\download\\training_set");
-        if(file.isDirectory()){
+        if (file.isDirectory()) {
             File[] files = file.listFiles();
-            for(File f:files){
+            for (File f : files) {
                 BufferedReader bufferReader = new BufferedReader(new FileReader(f));
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("D:\\share\\临时\\nf_prize_dataset.tar\\download\\preTrain\\" + f.getName())));
                 String s = bufferReader.readLine();
                 String movieId = "";
-                while ( s != null){
-                    if(s.contains(":")){
+                while (s != null) {
+                    if (s.contains(":")) {
                         movieId = s.split(":")[0];
                         s = bufferReader.readLine();
                         continue;

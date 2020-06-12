@@ -21,7 +21,7 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<Object> {
         System.out.println("channel 读取 Server 数据 ...");
         //服务端返回消息后
 
-        System.out.println("服务端数据为 ：" + (Person)msg);
+        System.out.println("服务端数据为 ：" + (Person) msg);
     }
 
 

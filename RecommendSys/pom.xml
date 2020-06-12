@@ -3,13 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>emr</artifactId>
-        <groupId>com.dsdatas</groupId>
+        <artifactId>studyProject</artifactId>
+        <groupId>com.wfm</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>RecommendSys</artifactId>
+
+    <properties>
+        <spark.version>2.2.0</spark.version>
+        <scala.version>2.11</scala.version>
+    </properties>
 
 <dependencies>
     <dependency>
@@ -24,20 +29,30 @@
     <!--</dependency>-->
     <!-- https://mvnrepository.com/artifact/org.mongodb/casbah -->
     <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-core_${scala.version}</artifactId>
+        <version>${spark.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-sql_${scala.version}</artifactId>
+        <version>${spark.version}</version>
+    </dependency>
+    <dependency>
         <groupId>org.mongodb</groupId>
-        <artifactId>casbah_2.11</artifactId>
+        <artifactId>casbah_${scala.version}</artifactId>
         <version>3.0.0</version>
-        <type>pom</type>
     </dependency>
     <dependency>
         <groupId>org.apache.spark</groupId>
-        <artifactId>spark-streaming_2.11</artifactId>
-        <version>2.3.2</version>
+        <artifactId>spark-streaming_${scala.version}</artifactId>
+        <version>${spark.version}</version>
     </dependency>
     <dependency>
         <groupId>org.apache.spark</groupId>
-        <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
-        <version>2.3.2</version>
+        <artifactId>spark-streaming-kafka-0-10_${scala.version}</artifactId>
+        <version>${spark.version}</version>
     </dependency>
     <dependency>
         <groupId>net.jpountz.lz4</groupId>

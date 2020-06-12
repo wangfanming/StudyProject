@@ -27,8 +27,8 @@ public class SimpleZKClient {
                 //收到事件通知后的回调函数（自定义事件处理逻辑）
                 System.out.println(event.getType() + " ------- " + event.getPath());
                 try {
-                    zkClient.getChildren("/",true);
-                }catch (Exception e){
+                    zkClient.getChildren("/", true);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -36,18 +36,18 @@ public class SimpleZKClient {
     }
 
     /**
+     * @return
      * @Author wangfanming
      * @Description 数据的增删改查
      * @Date 15:52 2019/9/8
      * @Param
-     * @return
      **/
 
 
     //在zk中创建数据节点
     @Test
     public void testCreate() throws KeeperException, InterruptedException {
-        String nodeCreated  = zkClient.create("/locks", null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        String nodeCreated = zkClient.create("/locks", null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
         //上传数据可以是任何类型，但都必须转成byte[]
     }
 
@@ -56,14 +56,14 @@ public class SimpleZKClient {
     public void testExist() throws KeeperException, InterruptedException {
         Stat stat = zkClient.exists("/locks/sub", false);
 
-        System.out.println(stat==null ? "not exist !" : "exist !");
+        System.out.println(stat == null ? "not exist !" : "exist !");
     }
 
     //获取子节点
     @Test
     public void getChildren() throws KeeperException, InterruptedException {
         List<String> children = zkClient.getChildren("/locks", true);
-        for (String child : children){
+        for (String child : children) {
             System.out.println(child);
         }
 //        Thread.sleep(Long.MAX_VALUE);
@@ -80,7 +80,7 @@ public class SimpleZKClient {
     @Test
     public void deleteZnode() throws KeeperException, InterruptedException {
         //参数二：指定要删除的版本，-1表示所有版本
-        zkClient.delete("/locks",-1);
+        zkClient.delete("/locks", -1);
     }
 
     //修改znode节点的数据

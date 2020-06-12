@@ -5,7 +5,7 @@ import java.net.Socket;
 
 public class ServiceClient {
     public static void main(String[] args) throws Exception {
-        Socket socket = new Socket("localhost",8899);
+        Socket socket = new Socket("localhost", 8899);
         InputStream inputStream = socket.getInputStream();
         OutputStream outputStream = socket.getOutputStream();
 

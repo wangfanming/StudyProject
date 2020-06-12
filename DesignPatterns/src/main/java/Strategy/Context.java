@@ -11,16 +11,17 @@ public class Context {
 
     /**
      * 构造函数，传入一个具体策略对象
+     *
      * @param strategy
      */
-    public Context(Strategy strategy){
+    public Context(Strategy strategy) {
         this.strategy = strategy;
     }
 
     /**
      * 策略方法
      */
-    public void contextInterface(){
+    public void contextInterface() {
         strategy.strategyInterface();
     }
 }

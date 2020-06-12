@@ -6,10 +6,11 @@ public class ByteObjConverter {
 
     /**
      * 将对象转换成字节
+     *
      * @param obj
      * @return
      */
-    public static byte[] objectToByte(Object obj){
+    public static byte[] objectToByte(Object obj) {
         byte[] bytes = null;
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -23,7 +24,7 @@ public class ByteObjConverter {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 byteArrayOutputStream.close();
             } catch (IOException e) {
@@ -36,10 +37,11 @@ public class ByteObjConverter {
 
     /**
      * 将字节转换成对象
+     *
      * @param bytes
      * @return
      */
-    public static Object byteToObject(byte[] bytes){
+    public static Object byteToObject(byte[] bytes) {
         Object obj = null;
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         ObjectInputStream objectInputStream = null;
@@ -49,7 +51,7 @@ public class ByteObjConverter {
             obj = objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 objectInputStream.close();
             } catch (IOException e) {

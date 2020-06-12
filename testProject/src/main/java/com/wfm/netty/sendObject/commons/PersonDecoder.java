@@ -9,6 +9,7 @@ import java.util.List;
 public class PersonDecoder extends ByteToMessageDecoder {  //ChannelInboundHandlerAdapter
     /**
      * 将字节数组解码成消息对象
+     *
      * @param ctx
      * @param in
      * @param out
