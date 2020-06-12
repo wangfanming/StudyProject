@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
+import com.sun.jna.Library;
 
 /**
  * @author wangfanming
@@ -7,5 +7,6 @@ package PACKAGE_NAME;
  * @Descripyion TODO
  * @date 2020/6/12 22:36
  */
-public interface HelloIntetface {
+public interface HelloIntetface extends Library {
+    int max(int a,int b);
 }
