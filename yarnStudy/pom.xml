@@ -12,7 +12,7 @@
     <artifactId>yarnStudy</artifactId>
 
     <properties>
-        <hadoop-version>2.2.0</hadoop-version>
+        <hadoop-version>3.2.3</hadoop-version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.avro/avro-tools -->
